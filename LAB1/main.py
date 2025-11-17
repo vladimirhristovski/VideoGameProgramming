@@ -7,7 +7,7 @@ pygame.init()
 WIDTH, HEIGHT = 600, 700
 ROWS, COLS = 5, 5
 SQUARE_SIZE = 80
-BOARD_TOP_LEFT = (60, 100)
+BOARD_TOP_LEFT = (100, 100)
 
 COLORS = [
     (255, 0, 0),  # Red
@@ -30,8 +30,7 @@ selected_color = None
 
 
 def draw_board():
-    pygame.draw.rect(screen, BLACK,
-                     (BOARD_TOP_LEFT[0] - 2, BOARD_TOP_LEFT[1] - 2, COLS * SQUARE_SIZE + 4, ROWS * SQUARE_SIZE + 4), 2)
+    pygame.draw.rect(screen, BLACK, (BOARD_TOP_LEFT[0], BOARD_TOP_LEFT[1], COLS * SQUARE_SIZE, ROWS * SQUARE_SIZE))
     for r in range(ROWS):
         for c in range(COLS):
             x = BOARD_TOP_LEFT[0] + c * SQUARE_SIZE
@@ -44,10 +43,10 @@ def draw_board():
 def draw_palette():
     global selected_color
     text = small_font.render("Select a Color:", True, BLACK)
-    screen.blit(text, (60, 520))
+    screen.blit(text, (100, 520))
 
     for i, color in enumerate(COLORS):
-        x = 60 + i * 100
+        x = 100 + i * 114
         y = 560
         pygame.draw.rect(screen, color, (x, y, 60, 60))
         pygame.draw.rect(screen, BLACK, (x, y, 60, 60), 2)
@@ -88,7 +87,7 @@ def end_screen(text):
 while True:
     screen.fill(BACKGROUND)
 
-    title = font.render("Color the Board!", True, BLACK)
+    title = font.render("Color Fill Puzzle", True, BLACK)
     screen.blit(title, (WIDTH // 2 - title.get_width() // 2, 20))
 
     draw_board()
@@ -103,9 +102,9 @@ while True:
 
             # Select color
             for i, color in enumerate(COLORS):
-                x = 60 + i * 100
+                x = 100 + i * 114
                 y = 560
-                if x <= mx <= x + 60 and y <= my <= y + 60:
+                if x <= mx <= x + 100 and y <= my <= y + 100:
                     selected_color = color
 
             # Paint board cell
