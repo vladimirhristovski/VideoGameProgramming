@@ -112,7 +112,6 @@ def main():
     selected = None
     message = ''
     message_timer = 0
-    clock = pygame.time.Clock()
 
     while True:
         draw_grid(grid, selected, message)
